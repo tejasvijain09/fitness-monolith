@@ -1,5 +1,12 @@
 pipeline {
+
     agent any
+
+    environment {
+        DB_URL = credentials('db-url')
+        DB_USER = credentials('db-user')
+        DB_PWD = credentials('db-password')
+    }
 
     stages {
 
@@ -24,9 +31,9 @@ pipeline {
                 docker run -d \
                   --name fitness-monolith-container \
                   -p 8080:8080 \
-                  -e DB_URL=jdbc:mysql://host.docker.internal:3306/fitnessTracker \
-                  -e DB_USER=root \
-                  -e DB_PWD=Tejasvi@786 \
+                  -e DB_URL="$DB_URL" \
+                  -e DB_USER="$DB_USER" \
+                  -e DB_PWD="$DB_PWD" \
                   fitness-monolith:0.0.1-SNAPSHOT
                 '''
             }

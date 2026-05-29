@@ -30,7 +30,7 @@ pipeline {
 
                 docker run -d \
                   --name fitness-monolith-container \
-                  -p 8080:8081 \
+                  -p 8081:8080 \
                   -e DB_URL="$DB_URL" \
                   -e DB_USER="$DB_USER" \
                   -e DB_PWD="$DB_PWD" \
